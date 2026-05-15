@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayaka Miki - Ethos</title>
+
+<style>
+body {
+    background-color: black;
+    overflow: hidden;
+    margin: 0;
+    font-family: serif;
+}
+
+.thing {
+    margin: 20px auto 0 auto;
+    cursor: pointer;
+    animation: rise 0.5s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.thing.shaking {
+    animation: shaker 0.05s linear infinite;
+}
+
+
+@keyframes shaker {
+    0% { transform: translateX(-4px) rotate(-4deg); }
+    50% { transform: translateX(4px) rotate(4deg); }
+    100% { transform: translateX(-4px) rotate(-4deg); }
+}
+
+.text-scroll {
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+}
+
+.text-scroll.active {
+    animation: scrollUp 60s linear forwards;
+}
+
+h2 {
+    color: white;
+    font-weight: normal;
+    line-height: 1.8;
+}
+
+
+@keyframes scrollUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-200vh);
+        opacity: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="thing" id="sayaka">
+    <img src="sayakaMiki.png" alt="Sayaka Miki" width="300" height="300">
+</div>
+
+<audio id="music to my ears" src="i miss the silence.mp3"></audio>
+
+<div class="text-scroll" id="poem">
+    <h2>
+    “the flood”<br><br>
+
+    A simple choice,<br>
+    To open the valve,<br>
+    and let the flood pour through,<br>
+    I knew nothing.<br><br>
+
+    A noble choice,<br>
+    To let the water sweep me away,<br>
+    and let my love fizzle out,<br>
+    They knew nothing.<br><br>
+
+    A choice of despair,<br>
+    To glide where it took us,<br>
+    At the cost of autonomy,<br>
+    We knew nothing.<br><br>
+
+    A choice of grief,<br>
+    To drown for a world who never cared,<br>
+    and choke for the innocence wronged,<br>
+    You knew nothing.
+    </h2>
+</div>
+
+<script>
+const sayaka = document.getElementById("sayaka");
+const ears = document.getElementById("music to my ears");
+const poem = document.getElementById("poem");
+
+sayaka.addEventListener("click", () => {
+    sayaka.classList.toggle("shaking");
+    poem.classList.add("active");
+    ears.play();
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 50000);
+});
+</script>
+
+</body>
+</html>

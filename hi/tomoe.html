@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mami</title>
+</head>
+<style>
+    body {
+        background-color: #000000;
+        font-family: 'Times New Roman', Times, serif, sans-serif;
+        text-align: center;
+        padding-top: 15px;
+        color: #ffffff;
+        
+    }
+    
+    #mami {
+        opacity: 0;
+        position: relative;
+        top: -25px;
+        left: 0px;
+
+        transform-origin: top center;
+        animation: shaker 10s ease-in-out infinite;
+    }
+    @keyframes shaker {
+        0% { transform:rotate(-4deg); }
+        50% { transform: rotate(4deg); }
+        100% { transform: rotate(-4deg); }
+    }
+</style>
+<body>
+
+    <audio id="nom" src="eat.mp3"></audio>
+    <audio id="her song" src="Buried In All My Favourite Colours.wav"></audio>
+    <img id="mami" src="mami.png" width="300">
+        <div id="thing">
+        im still hungry
+        <button id="nomButton">feed me</button>
+    </div>
+    <script>
+        const thing = document.getElementById("thing");
+        const nom = document.getElementById("nom");
+        const herSong = document.getElementById("her song");    
+        const mami = document.getElementById("mami");
+        const nomButton = document.getElementById("nomButton");
+
+        nomButton.addEventListener("click", () => {
+            thing.style.opacity = 0;
+            mami.style.opacity = 1;
+            nom.play();
+            herSong.play();
+        });
+
+    </script>
+</body>
+</html>

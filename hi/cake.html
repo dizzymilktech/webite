@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cheese time!</title>
+</head>
+<style>
+    body {
+        background-color: #000000;
+        font-family: 'Times New Roman', Times, serif, sans-serif;
+        text-align: center;
+        padding-top: 15px;
+        color: #ffffff;
+        
+    }
+    #game {
+        opacity: 0;
+    }
+    #charlotte {
+        transition: transform 0.15s ease;
+    }
+
+</style>
+<body>
+<button id="startGamee">startGamee</button>
+
+<div id="game">
+    <h1>Feed a Charlotte</h1>
+    <img id="charlotte" src="charlot.png" width="300">
+    <div id="score">cheese: 0</div>
+
+    <button id="clickButton">Grow a Charlotte</button>
+
+    <br>
+    <audio id="music to my ears" src="i miss the silence.mp3"></audio>
+    <audio id="nom" src="eat.mp3"></audio>
+    <audio id="upgrade" src="upgrade.mp3"></audio>
+    <audio id="cheese" src="Cheese.wav"></audio>
+    <button id="upgradeButton">
+    Buy Upgrade (Cost: 20)
+    </button>
+    <script>
+        let charlotteSize = 1;
+        let cheese = 0;
+        let clickPower = 1;
+        let upgradeCost = 20;
+
+        const scoreText = document.getElementById("score");
+        const clickButton = document.getElementById("clickButton");
+        const upgradeButton = document.getElementById("upgradeButton");
+        const charlotteImage = document.getElementById("charlotte");
+        const ears = document.getElementById("music to my ears");
+        const nom = document.getElementById("nom");
+        const startGamee = document.getElementById("startGamee");
+        const game = document.getElementById("game");
+        const upgrade = document.getElementById("upgrade");
+        const cheeseSound = document.getElementById("cheese");
+        function updateDisplay() {
+            scoreText.textContent = "cheese: " + cheese;
+
+            upgradeButton.textContent =
+            "Buy Upgrade (Cost: " + upgradeCost + ")";
+        }
+
+                function changeImage() { 
+                    if (charlotteSize === 2) {
+                        charlotteImage.src = "charlot2.png";
+                    } else if (charlotteSize === 3) {
+                        charlotteImage.src = "charlot3.png";
+                    }
+                    else if (charlotteSize === 4) {
+                        window.location.href = "tomoe.html";
+                    }
+
+
+                }
+
+        clickButton.addEventListener("click", () => {
+            const sound = nom.cloneNode();
+            sound.play();
+            cheese += clickPower;
+            updateDisplay();
+            charlotteImage.style.transition = "none";
+            charlotteImage.style.transform = "scale(1.2) rotate(10deg)";
+            setTimeout(() => {
+            charlotteImage.style.transform = "scale(1) rotate(0deg)";
+                charlotteImage.style.transition = "transform 0.15s ease";
+            }, 0.001);
+        });
+
+        startGamee.addEventListener("click", () => {
+            const sound = cheeseSound.cloneNode();
+            sound.play();
+            game.style.opacity = 1;
+            startGamee.style.display = "none";
+        });
+
+        upgradeButton.addEventListener("click", () => {
+            if (cheese >= upgradeCost) {
+                cheese -= upgradeCost;
+                charlotteSize += 1;
+                changeImage();
+                const sound = upgrade.cloneNode();
+                sound.play();
+                updateDisplay();
+            }
+        });
+
+        updateDisplay();
+    </script>
+</div>
+</body>
+</html>
+
+
+
+
